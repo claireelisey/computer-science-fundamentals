@@ -1,0 +1,79 @@
+SHORT ANSWER
+
+1. Why do programmers use pseudocode?
+
+A: Programmers use pseudocode in brainstorming and developing functions and algoriths. It's a way to "talk out loud" in English-like statements what the developer's intentions are for the function(s) they're creating.
+
+2. If you run pseudocode on your computer what would happen?
+
+A: The computer would not recognize the code as a language it is able to decipher, and therefore will not run.
+
+
+
+
+PROGRAMMING ASSIGNMENT
+
+1. Create a function that takes two numbers and prints out the greater number.
+
+A:
+
+INPUT first number
+INPUT second number
+FUNCTION printGreater with PARAMETERS first number, second number
+IF first number is greater than second number
+    PRINT "first number is greater"
+ELSE IF first number is less than second number
+    PRINT "second number is greater"
+ELSE 
+PRINT "first and second numbers are same"
+END IF
+END
+
+
+2. Create a function that prints out the numbers from 1 to 100.
+
+A:
+
+FUNCTION printNumbers
+BEGIN 
+  num=100               // num to start at 100
+WHILE (num >= 0)        // loop goes till num is greater than or equal to 0
+  PRINT num
+  num = num-1           // decrement 100 by 1
+END WHILE
+PRINT num
+END
+
+
+3. Create a function that searches for a specific entry in a phonebook.
+
+A:
+
+
+INPUT array of entries
+FUNCTION findEntry with PARAMETER entry
+FOR index = 0
+    IF index of entries === entry
+        PRINT "Found entry "+ entry
+    ELSE IF no entry
+        PRINT "Entry does not exist"
+END FOR
+END FUNCTION
+
+
+4. Using the pseudocode you wrote for the previous question, implement it in any computer language of your choice.
+
+A:
+
+
+var entires = ["Claire", "Derek", "Roscoe", "Mark", "Camela"];
+
+function findEntry(entry) {
+    for (let i=0; i < entries.length; i++) {
+        if (entires[i] === entry) {
+            return "Found entry " + entry;
+        } else {
+            return "Entry does not exist"
+        }
+    }
+}
