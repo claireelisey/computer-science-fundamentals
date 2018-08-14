@@ -16,6 +16,7 @@ f) If Patrick wants to leave the line, how would you delete him from the array?
 
 A:
 
+
 class Line {
     constructor(person){
         this.persons = [];
