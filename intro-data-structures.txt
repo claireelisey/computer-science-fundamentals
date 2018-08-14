@@ -1,0 +1,77 @@
+1. A line of people at an amusement park ride.
+
+The line is composed of members, represented as strings.
+There is a front to the line, as well as a back.
+When someone enters the line, place them at the end.
+People may leave the line whenever they see fit, and those behind them take their place.
+
+Given the above real-world information, use an array data structure to code the following solution.
+
+a) Use an array input: ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+b) Insert a new person, "Mary" at the end of the line. In other words, you should insert Mary after Mike.
+c) Find a person in line named "Josh." This function should return the position of 2 in the array, (recall that arrays are 0-based).
+d) Find a person in line named "Emily." What should your function return if it does not find the item in the array?
+e) What if Ava wants to allow a friend, "Melissa", to cut in line in front of her? How would you code this so Melissa appears before Ava?
+f) If Patrick wants to leave the line, how would you delete him from the array?
+
+A:
+
+class Line {
+    constructor(person){
+        this.persons = [];
+    }
+      
+    addPerson(person){
+        this.persons.push(person);
+    }
+    
+    findPerson(person){
+        for (let i = 0; i <= this.persons.length; i++){
+        if (this.persons[i] === person){
+            console.log ("Found " + person + " at index" + " " + i);
+        } else {
+            console.log (person + " was not found.");
+        }
+        }
+    }
+
+    cutLine(person){
+        this.persons.splice(1, 0, person);
+        console.log(this.persons);
+    }
+
+    leaveLine(person){
+        const index = this.persons.indexOf(person);
+        if (index !== person) {
+        this.persons.splice(4, 1);
+    }
+        console.log(this.persons);
+    }
+      
+}
+
+let line = new Line();
+
+line.addPerson("Vivian");
+line.addPerson("Ava");
+line.addPerson("Josh");
+line.addPerson("Patrick");
+line.addPerson("Mike");
+line.addPerson("Mary");
+
+line.findPerson("Josh");
+line.findPerson("Emily");
+
+line.cutLine("Melissa");
+
+line.leaveLine("Patrick");
+
+
+
+2. Provide another real-world example that you can model using a data structure.
+
+A: Let's take a project management tool, for example. We have a project with specific tasks, which are each assigned to specific team members with specific due dates and notes. Let's say we're at the start of Project 1. At the end of the day, Team Member A completes their assigned task within this project; once they mark it as complete, an email is sent to the other team members so that everyone is made aware of the project's status. Team Member B is then notified that they can start their task. Once Team Member B is finished, they mark the assigned task as complete and the cycle is repeated until there are no more tasks listed under Project 1, making Project 1 complete and can then be archived. Project 1 is essentially a class wtih tasks; each task is an object with key:value pairs, such as: assigned: "Claire" or due: "Aug 15."
+
+3. How would your data structure allow developers to access and manipulate the data?
+
+A: Developers would have access to the current task objects and would be able to manipulate them by adding, updating, or removing data.
