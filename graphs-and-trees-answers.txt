@@ -1,0 +1,232 @@
+#### Exercises
+
+> What is a binary tree and what makes it unique to other trees?
+
+A: A binary tree is a a data structure composed of nodes that point to either a left child or a right child.
+
+> What is a heuristic?
+
+A: A heuristic is essentially a guess that an algorithm makes in order to solve a problem quickly, however not always being the "best" solution.
+
+> What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+A: Virus scanners use heuristics to detect code or behavorial patterns indicative of viruses.
+
+> What is the difference between a depth-first search and a breadth-first search?
+
+A: A depth-first search (DPS) is the process of traveling down a single branch - then move back upwards and repeat - in search of the desired element; whereas a breath-first search is the process of searching an entire row of nodes before moving on to the next row until the desired element is found.
+
+> Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+A: An undirected, a-cyclic, unweighted graph is a graph that is composed of connected nodes that have no cost of travel assigned to them, and that simply connect to each other having no start or end nodes. Because of its structure, this type of graph would result in a dead-end if a depth-first search were performed on it.
+
+> What kind of graph is a binary search tree?
+
+A: A binary search tree (BST) is a binary tree where each node is assigned some quantifiable value. Nodes in this instance increase in value as we follow the right of the BTS, and decrease in value as we follow the left.
+
+
+
+#### Programming Questions
+
+For the following questions, describe in words how you could solve the problem and then do so. Use the depiction of the Binary Search Tree to refer to the examples.
+
+> Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+
+A:
+
+###### Brainstorm:
+
+Start from the root, check left branch then check right branch to see if value exists. Return true if value found, and false if not found.
+
+###### Code:
+
+```javascript
+class Node {
+    constructor(data, left = null, right = null) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class BST {
+    constructor() {
+        this.root = null;
+    }
+
+    insert(data) {
+        const node = new Node(data);
+        if (this.root === null) {
+            this.root = node;
+        } else {
+            let current = this.root;
+            let parent;
+            while(true) {
+                parent = current;
+                if (data < current.data) {
+                    current = current.left;
+                    if (current === null) {
+                    parent.left = node;
+                    break;
+                    }
+                } else {
+                    current = current.right;
+                    if (current === null) {
+                    parent.right = node;
+                    break;
+                    }
+                }
+            }
+        }
+    }
+    
+    find(data) {
+        let current = this.root;
+        while (current.data !== data) {
+            if (data < current.data) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+            if (current === null) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+const bst = new BST();
+
+bst.insert(8);
+bst.insert(3);
+bst.insert(1);
+bst.insert(6);
+bst.insert(4);
+bst.insert(5);
+bst.insert(7);
+bst.insert(10);
+bst.insert(14);
+bst.insert(13);
+
+bst.find(10);
+bst.find(23);
+```
+
+
+> Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
+Example: The distance between the nodes 4 and 10 is 4. The distance between the nodes 8 and 10 is 1. The distance between the nodes 1 and 14 is 4.
+
+A:
+
+###### Brainstorm:
+
+We need to add the distance between the root and n1 + the distance between the root and n2 - 2*distance between the root and lowest common ancestor.
+
+###### Code:
+
+```javascript
+class Node {
+    constructor(data, left = null, right = null) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class BST {
+    constructor() {
+        this.root = null;
+    }
+
+    findDistanceBetweenTwoNodes(root, n1, n2) {
+		var lowestCommonAncestor = this.findCommonAncestor(root, n1, n2);
+		var distanceNode1ToRoot = this.countAncestors(lowestCommonAncestor, n1);
+		var distanceNode2ToRoot = this.countAncestors(lowestCommonAncestor, n2);
+		var distanceRootToAncestor = this.countAncestors(root, lowestCommonAncestor);
+		var totalDistance = (distanceNode1ToRoot + distanceNode2ToRoot) - (2 * distanceRootToAncestor);
+		return ('The distance between node ' + n1 + ' and node ' + n2 + ' is ' + totalDistance);
+	}
+
+	findCommonAncestor(root, n1, n2) {
+		if (!root) return;
+		var lowestCommonAncestor = root.data;
+		if (n1 === lowestCommonAncestor || n2 === lowestCommonAncestor) {
+			return lowestCommonAncestor;
+		}
+		if (n1 < lowestCommonAncestor && n2 < lowestCommonAncestor) {
+			return this.findCommonAncestor(root.left, n1, n2);
+		}
+		if (n1 > lowestCommonAncestor && n2 > lowestCommonAncestor) {
+			return this.findCommonAncestor(root.right, n1, n2);
+		}
+		return lowestCommonAncestor;
+	}
+
+	countAncestors(root, data) {
+		let thisNode = this.root;
+		let nodeCount = 0;
+		while (thisNode) {
+			if (data === thisNode.data) {
+				return nodeCount;
+			}
+			thisNode = data < thisNode.data ? thisNode.left : thisNode.right;
+			nodeCount++;
+		}
+	}
+
+	getRootNode() {
+		return this.root;
+	}
+
+	insert(data) {
+		var newNode = new Node(data);
+		if (this.root === null) {
+			this.root = newNode;
+			this.length++;
+		} else {
+			this.insertNode(this.root, newNode);
+		}
+	}
+
+	insertNode(node, newNode) {
+		if (newNode.data < node.data) {
+			if (node.left === null) {
+				node.left = newNode;
+				this.length++;
+			} else {
+				this.insertNode(node.left, newNode);
+			}
+		} else {
+			if (node.right === null) {
+				node.right = newNode;
+				this.length++;
+			} else {
+				this.insertNode(node.right, newNode);
+			}
+		}
+	}
+}
+
+const bst = new BST();
+
+bst.insert(8);
+bst.insert(3);
+bst.insert(1);
+bst.insert(6);
+bst.insert(4);
+bst.insert(5);
+bst.insert(7);
+bst.insert(10);
+bst.insert(14);
+bst.insert(13);
+
+var root = bst.getRootNode();
+
+bst.findDistanceBetweenTwoNodes(root, 4, 10);
+bst.findDistanceBetweenTwoNodes(root, 8, 10);
+bst.findDistanceBetweenTwoNodes(root, 1, 14);
+```
