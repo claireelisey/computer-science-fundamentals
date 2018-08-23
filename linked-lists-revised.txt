@@ -1,0 +1,274 @@
+####Exercises
+
+> What are some pros and cons of using linked lists instead of arrays?
+
+A: 
+
+Pros: Unlike an array which requires space for each item in the array, a linked list is made up of nodes that each contain a piece of data and the location of the next node in the list. In other words, you have much more memory available to you in a linked list.
+
+Cons: It can take an awful long time to search for something in a linked list, since you have to go through each node linearly in the linked list until you find what you're looking for.
+
+> Come up with a real world example of a linked list.
+
+A: An example of a linked list would be the board game Clue. In order to solve the mystery, you have to uncover a series of clues that each reference the next clue, and the next clue, and the next clue, until you've reached your verdict.
+
+
+
+####Programming Questions
+
+> The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and a functional implementation of the method.
+
+A:
+
+The pseudocode was missing a while loop; otherwise the list would never have more than two nodes in it.
+
+Corrected pseudocode:
+
+FUNCTION push(element)
+CREATE node
+SET node.value TO element
+SET node.next TO null
+
+IF the head node does not exist
+    THEN SET head to node
+ELSE
+    SET current to head
+    WHILE current.next != null
+        current = current.next
+    END WHILE
+    SET current.next to node
+END IF
+END FUNCTION
+
+
+Code:
+
+class Node {
+    constructor(data, next = null) {
+        this.data = data;
+        this.next = next;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+    }
+
+    push(value) {
+        const node = new Node(value, null);
+        if (!this.head) {
+            this.head = node;
+        }
+        else {
+            let current = this.head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = node;
+        }
+        return "node added";
+    }
+    print() {
+        let s = "";
+        let current = this.head;
+            while (current != null) {
+                s = s + current.data + " ";
+                current = current.next;
+            }
+            return s;
+    }
+}
+
+const ll = new LinkedList();
+
+ll.push(8);
+
+ll.print();
+
+
+
+> Given an unsorted singly linked list, remove all duplicates from the linked list.
+Example
+Input: 'a -> c -> d -> d -> a'
+Output: 'a -> c -> d'
+
+A:
+
+Pseudocode:
+
+SET n1 to head
+WHILE n1 != null
+SET n2 to n1
+SET val to n1.value
+WHILE n2.next != null
+    IF n2.next.value = val
+    SET n2.next to n2.next.next
+    ELSE SET n2 to n2.next
+SET n1 to n1.next
+
+Code: 
+
+class Node {
+    constructor(data, next = null) {
+        this.data = data;
+        this.next = next;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+    }
+
+    push(value) {
+        const node = new Node(value, null);
+        if (!this.head) {
+            this.head = node;
+        }
+        else {
+            let current = this.head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = node;
+        }
+        return "node added";
+    }
+
+    print() {
+        let s = "";
+        let current = this.head;
+            while (current != null) {
+                s = s + current.data + " ";
+                current = current.next;
+            }
+            return s;
+    }
+
+    removeDuplicates() {
+        var n1 = this.head;
+        while (n1 != null) {
+//            alert(ll.print());
+            var n2 = n1;
+            var val = n1.data;
+            while (n2.next != null) {
+                if (n2.next.data == val) {
+                    n2.next = n2.next.next;
+//                    alert(val);
+                } else {
+                    n2 = n2.next;
+                }
+//                alert(ll.print());
+            }
+            n1 = n1.next;
+        }
+        return "duplicates removed"
+    }
+
+}
+
+const ll = new LinkedList();
+
+ll.push("a");
+ll.push("c");
+ll.push("d");
+ll.push("d");
+ll.push("a");
+
+ll.print();
+
+ll.removeDuplicates();
+
+ll.print();
+
+
+
+> Given an unsorted singly linked list, reverse it.
+Example
+Input: 'a -> b -> c -> d'
+Output: 'd -> c -> b -> a'
+
+A:
+
+Pseudocode:
+
+SET current to head
+SET next to null
+SET previous to null
+WHILE current
+    SET next to current.next
+    SET current.next to previous
+    SET previous to current
+    SET current to next
+END WHILE
+SET head to previous
+
+Code:
+
+class Node {
+    constructor(data, next = null) {
+        this.data = data;
+        this.next = next;
+    }
+}
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+    }
+
+    push(value) {
+        const node = new Node(value, null);
+        if (!this.head) {
+            this.head = node;
+        }
+        else {
+            let current = this.head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = node;
+        }
+        return "node added";
+    }
+
+    print() {
+        let s = "";
+        let current = this.head;
+            while (current != null) {
+                s = s + current.data + " ";
+                current = current.next;
+            }
+            return s;
+    }
+
+    reverse() {
+        var current = this.head;
+        var next = null;
+        var prev = null;
+        while (current) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        this.head = prev;
+
+        return "linked list reversed"
+    }
+}
+
+const ll = new LinkedList();
+
+ll.push("a");
+ll.push("b");
+ll.push("c");
+ll.push("d");
+
+ll.print();
+
+ll.reverse();
+
+ll.print();
