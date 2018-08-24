@@ -1,0 +1,72 @@
+> Using proper pseudo-code, describe the following primitive algorithms:
+
+Making coffee;
+Washing dishes;
+A choice of your own.
+
+A:
+
+* Making coffee
+
+Pseudocode:
+
+FUNCTION makeCoffee
+SET keurig to on
+SEQUENCE
+    Add water to desired level
+    Insert kcup into keurig
+    Place mug under nozzle
+    Select desired amount of coffee
+IF waterLevel >= kcup
+    Brew coffee to desired amount
+    ELSE request more water
+END IF
+END FUNCTION
+
+* Washing dishes
+
+Pseudocode:
+
+FUNCTION washDishes
+WHILE dishes in sink
+REPEAT
+    Place dishes in dishwasher
+UNTIL no dishes in sink
+END WHILE
+SEQUENCE
+    Add detergent to dishwasher
+    Close dishwasher
+    Press start
+END FUNCTION
+
+* Making guacamole
+
+Pseudocode:
+
+FUNCTION makeGuac
+SEQUENCE
+    Add sliced avocados to bowl
+    Add chopped tomatoes to bowl
+    Add chopped onions to bowl
+    Add diced jalapenos to bowl
+    Add minced garlic to bowl
+    Add salt to bowl
+    Add pepper to bowl
+REPEAT 
+    Mix ingredients with fork
+UNTIL well blended
+END FUNCTION
+
+> As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+A:
+
+* Pandora uses an algorithm to find and play songs based on what the listener has "liked," "disliked" or listened to previously. Pandora stands out because, as some people claim, over time, Pandora "just gets you" - meaning they're prettu successful at nailing which songs you'll like in the future based on the information they've collected from you previously.
+
+* Instagram uses an algorithm to suggest other accounts to follow, based on the content you follow and the mutual connections you have with those accounts. Instagram stands out because the accounts it pulls up as suggestions seem to be fairly accurate - at least for me, I am usually pleased with my search results on Instagram.
+
+* Waze uses an algorithm that predicts the fastest route from point A to point B. Waze stands out because (for one, it has saved me so many headaches and I would drive into a lake if Waze told me to) its accuracy is astounding. It will even update itself mid-route if it finds a better route.
+
+> Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+
+A: An efficient algorithm should result in a desired outcome through as few, precise steps as possible - and quickly. An inefficient algorithm might have unclear - maybe several - steps, that take much longer to achieve.
