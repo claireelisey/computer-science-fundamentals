@@ -22,7 +22,7 @@ A: An undirected, a-cyclic, unweighted graph is a graph that is composed of conn
 
 > What kind of graph is a binary search tree?
 
-A: A binary search tree (BST) is a binary tree where each node is assigned some quantifiable value. Nodes in this instance increase in value as we follow the right of the BTS, and decrease in value as we follow the left.
+A: A binary search tree (BST) is a directed, a-cyclic, unweighted binary tree graph where each node is assigned some quantifiable value. Nodes in this instance increase in value as we follow the right of the BTS, and decrease in value as we follow the left.
 
 
 
