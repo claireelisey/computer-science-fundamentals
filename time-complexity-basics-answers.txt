@@ -1,0 +1,84 @@
+#### Questions
+
+> What is time complexity and what is its relation to algorithms?
+
+A: Time complexity is used to estimate the time it takes a program to execute. It is expressed as a function of the variable n, where n is the input size, and f(n) is the rate the algorithm grows as the input size grows.
+
+> What is runtime?
+
+A: Runtime, which has also been referred to as time complexity, is the physical time duration of an algorithm.
+
+> How is the runtime of an algorithm calculated?
+
+A: Add up how many instructions the algorithm will execute as a function of the size of its input, then simplify the expression to the largest term and drop any constants.
+
+> Name the six types of algorithm growth rates we saw in this checkpoint and list them in order of most efficient to least efficient. Now Google another algorithmic growth rate not covered and place it in the correct spot in your list.
+
+A:
+
+* Constant Growth Rate: O(1)
+* Logarithmic Growth Rate: O(log n)
+* Linear Growth Rate: O(n)
+* Log-Linear Growth Rate: O(n log n)
+* Quadratic Growth Rate: O(n^2)
+* Cubic Growth Rate: O(n^3)
+* Exponential Growth Rate: O(2^n)
+
+> Choose one of the algorithmic growth rates from the last question and make a comparison to a real-life situation.
+
+A: Linear Growth Rate - - At the top of a water slide, each patron must stand up against the height marker. The lifeguard must check that all patrons are tall enough to go down the slide. Each patron that comes up to the top that's tall enough will be able to go down the slide.
+
+
+> Determine the time complexity of the following snippet of code. It is commonly known as a linear search.
+
+```javascript
+FUNCTION linearSearch(array, target)
+ FOR each number in the array
+   IF number = target THEN
+     RETURN true
+   END IF
+ END FOR
+ RETURN false
+END FUNCTION
+```
+
+A: Linear Growth O(n)
+
+
+> Determine the time complexity of the following snippet of code.
+
+```javascript
+FUNCTION foo(array)
+ FOR each number in the array
+   FOR each number in the array
+     print "Hello"
+   END FOR
+ END FOR
+END FUNCTION
+```
+
+A: Quadratic Growth Rate O(n^2)
+
+
+> Determine the time complexity of the following snippet of code. It is commonly known as the Fibonacci sequence.
+
+```javascript
+FUNCTION fibonacci(number)
+ IF number < 1 THEN
+   ERROR
+ ELSE IF number = 1 or 2 THEN
+   RETURN 1
+ ELSE
+   CALL fibonacci WITH number - 2 RETURNING twoBack
+   CALL fibonacci WITH number - 1 RETURNING oneBack
+   RETURN twoBack + oneBack
+ END IF
+END FUNCTION
+```
+
+
+A: Exponential Growth Rate O(2^n)
+
+> Out of the code snippets you just saw, which is the most time efficient?
+
+A: The most efficient would be the linear growth function (#6).
