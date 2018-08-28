@@ -1,0 +1,55 @@
+> Write pseudocode for bubble sort.
+
+A:
+
+ FUNCTION bubbleSort(collection)
+    REPEAT
+        SET swapped to false
+        FOR i = FIRST INDEX of collection to LAST INDEX of collection - 1
+            IF collection[i] > collection[i + 1] THEN
+                SET tmp to collection[i]
+                SET collection[i] to collection[i + 1]
+                SET collection[i + 1] to tmp
+                SET swapped to true
+            END IF
+        END FOR
+    UNTIL swapped is FALSE
+    RETURN collection
+ END FUNCTION
+
+> Write pseudocode for quicksort.
+
+A:
+
+FUNCTION quickSort(collection)
+    SET low to 0
+    SET high to collection -1
+    IF low < high THEN
+        SET pivot to partition WITH collection, low ,high
+        CALL quickSort WITH collection, low, pivot
+        CALL quickSort WITH collection, pivot + 1, high
+    END IF
+END FUNCTION
+
+FUNCTION partition(collection, low, high){
+    SET pivot to collection[low]
+    SET leftwall to low
+
+    FOR each item in collection
+        IF collection[i] < pivot THEN
+            swap collection[i] with collection[leftwall + 1]
+            SET leftwall to leftwall + 1
+        END IF
+    END FOR
+    swap WITH pivot, collection[leftwall]
+    RETURN leftwall
+END FUNCTION
+
+
+> We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+A: Merge sort and quick sort both use methods that enable them to avoid iterating through an entire collection of data. Instead, quick sort picks a "pivot point" and merge sort breaks the entire collection into sub-colelctions; both then compare data within those smaller "collections."
+
+> All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+
+A: Bucket sort works by distributing the data in a collection into a number of "empty" buckets. Each bucket is then sorted individually, whether using another sorting method or by recursion, and placed back into the original collection. Bucket sort works best for data that is sparsely allocated in value, and also when that data can be sorted and distributed back perfectly between buckets.
